@@ -158,14 +158,14 @@ export function useDocumentsQueries({
   )
   const libraryCostQuery = useQuery({
     ...queries.getLibraryCostSummaryOptions({
-      query: { libraryId: activeLibraryId ?? '' },
+      path: { libraryId: activeLibraryId ?? '' },
     }),
     enabled: !!activeLibraryId,
     staleTime: 30_000,
   })
   const workspaceCostQuery = useQuery({
     ...queries.getWorkspaceCostSummaryOptions({
-      query: { workspaceId: activeWorkspace?.id ?? '' },
+      path: { workspaceId: activeWorkspace?.id ?? '' },
     }),
     enabled: !!activeWorkspace?.id,
     staleTime: 30_000,

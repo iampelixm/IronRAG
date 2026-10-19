@@ -206,7 +206,7 @@ export function LibrariesTab({ active }: Readonly<{ active: boolean }>) {
 
   const workspaceCostQueries = useQueries({
     queries: workspaces.map((workspace) => ({
-      ...queries.getWorkspaceCostSummaryOptions({ query: { workspaceId: workspace.id } }),
+      ...queries.getWorkspaceCostSummaryOptions({ path: { workspaceId: workspace.id } }),
       enabled: active && workspacesQuery.isSuccess,
     })),
   })
@@ -219,7 +219,7 @@ export function LibrariesTab({ active }: Readonly<{ active: boolean }>) {
 
   const libraryCostQueries = useQueries({
     queries: libraries.map(({ library }) => ({
-      ...queries.getLibraryCostSummaryOptions({ query: { libraryId: library.id } }),
+      ...queries.getLibraryCostSummaryOptions({ path: { libraryId: library.id } }),
       enabled: active,
     })),
   })

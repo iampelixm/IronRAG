@@ -127,9 +127,7 @@ export const documentsApi = {
    * should only be requested once per library open.
    */
   list: (params: DocumentListParams): Promise<DocumentListPageResponse> => {
-    const query: NonNullable<ListContentDocumentsData['query']> = {
-      libraryId: params.libraryId,
-    }
+    const query: NonNullable<ListContentDocumentsData['query']> = {}
     if (params.cursor !== undefined) query.cursor = params.cursor
     if (params.limit !== undefined) query.limit = params.limit
     if (params.search !== undefined) query.search = params.search
@@ -140,9 +138,10 @@ export const documentsApi = {
     if (params.status && params.status.length > 0) query.status = params.status.join(',')
     if (params.ids && params.ids.length > 0) query.ids = params.ids.join(',')
 
-    return Content.listContentDocuments({ query }).then((result): DocumentListPageResponse =>
-      unwrap(result),
-    )
+    return Content.listContentDocuments({
+      path: { libraryId: params.libraryId },
+      query,
+    }).then((result): DocumentListPageResponse => unwrap(result))
   },
   get: (documentId: string) =>
     Content.getContentDocument({ path: { documentId } }).then(

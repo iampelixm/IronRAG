@@ -138,8 +138,8 @@ vi.mock('@/shared/api', () => ({
       'libraries',
       input.path.workspaceId,
     ],
-    getWorkspaceCostSummaryOptions: (input: { query: { workspaceId: string } }) => ({
-      queryKey: ['wsCost', input.query.workspaceId],
+    getWorkspaceCostSummaryOptions: (input: { path: { workspaceId: string } }) => ({
+      queryKey: ['wsCost', input.path.workspaceId],
       queryFn: async () => ({
         totalCost: '1.25',
         currencyCode: 'USD',
@@ -148,12 +148,12 @@ vi.mock('@/shared/api', () => ({
         providerCallCount: 11,
       }),
     }),
-    getWorkspaceCostSummaryQueryKey: (input: { query: { workspaceId: string } }) => [
+    getWorkspaceCostSummaryQueryKey: (input: { path: { workspaceId: string } }) => [
       'wsCost',
-      input.query.workspaceId,
+      input.path.workspaceId,
     ],
-    getLibraryCostSummaryOptions: (input: { query: { libraryId: string } }) => ({
-      queryKey: ['libCost', input.query.libraryId],
+    getLibraryCostSummaryOptions: (input: { path: { libraryId: string } }) => ({
+      queryKey: ['libCost', input.path.libraryId],
       queryFn: async () => ({
         totalCost: '0.50',
         currencyCode: 'USD',
@@ -161,9 +161,9 @@ vi.mock('@/shared/api', () => ({
         providerCallCount: 5,
       }),
     }),
-    getLibraryCostSummaryQueryKey: (input: { query: { libraryId: string } }) => [
+    getLibraryCostSummaryQueryKey: (input: { path: { libraryId: string } }) => [
       'libCost',
-      input.query.libraryId,
+      input.path.libraryId,
     ],
   },
 }))
